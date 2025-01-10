@@ -52,7 +52,10 @@
 - **AI 기반 의사결정**: Utilizes advanced machine learning algorithms to optimize trading strategies.
 - **빅데이터 활용**: Designed to handle large-scale market data in real time.
 
-> **TODO**: List any additional features here.
+> **TODO**: 
+>  - 현재 승률
+>  - PnL 
+>  - 거래 내역
 
 <br />
 
