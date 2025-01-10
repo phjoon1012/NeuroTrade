@@ -94,7 +94,7 @@ class LSTMModel(nn.Module):
 <br /><br />
   
 <div align="center">
-BTC 12월 1시간 봉을 이용한 예측 모델
+LSTM 기법을 이용한 비트코인 가격 예측 모델
 </div>
 
 <p align="center">
@@ -103,7 +103,7 @@ BTC 12월 1시간 봉을 이용한 예측 모델
   <br /><br />
 </p>
 <div align="center">
-출처: Binance Market Data
+학습 데이터: Binance Market Data BTCUSDT 12월 1시간 봉
 </div>
   
 
