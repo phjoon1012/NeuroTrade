@@ -1,6 +1,6 @@
 <div align="center">
 
-# **Cryptocurrency-AlgoTrading**  
+# **Cryptocurrency - AlgoTrading**  
 ### _기계학습을 이용한 암호화폐의 자동매매_  
 
 <p align="center">
@@ -59,6 +59,8 @@
 
 <br />
 
+
+
 ## 기술 스택
 
  - **Python**: for backend & AI/ML scripts  
@@ -69,21 +71,43 @@
 
 <br />
 
+### 예시 코드
+
+
+
+
+```python
+import torch
+import torch.nn as nn
+
+class LSTMModel(nn.Module):
+    def __init__(self, input_size, hidden_size, num_layers, output_size):
+        super(LSTMModel, self).__init__()
+        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        out, _ = self.lstm(x)
+        out = self.fc(out[:, -1, :])  # Use the last output of the LSTM
+        return out
+```
+<br /><br />
+  
+<div align="center">
+BTC 12월 1시간 봉을 이용한 예측 모델
+</div>
+
+<p align="center">
+  <br /><br />
+    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/d4880684-3ace-49bd-ad89-5f6b483f2284"/>
+  <br /><br />
+</p>
+<div align="center">
+출처: Binance Market Data
+</div>
+  
+
 ## 설치
 
 > **TODO**:
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/cryptocurrency-algotrading.git
-
-# Navigate to the project directory
-cd cryptocurrency-algotrading
-
-# Create and activate a virtual environment (optional but recommended)
-python3 -m venv .venv
-source .venv/bin/activate  # On macOS/Linux
-# or .venv\Scripts\activate.bat (on Windows)
-
-# Install the required dependencies
-pip install -r requirements.txt
