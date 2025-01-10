@@ -11,9 +11,9 @@
 
 ## Features
 
-- **Easy to use**: AWS based cryptocurrency trading bot.
-- **Fast**: Uses advanced optimization under the hood.
-- **Scalable**: Designed to handle big data.
+- **코인 자동 매수/매도**: AWS based cryptocurrency trading bot.
+- **AI 기반 의사결정**: Uses advanced optimization under the hood.
+- **빅테이터 활용**: Designed to handle big data.
 
  **추후에 더 추가 / 지금은 빈칸 채우기용**
 
