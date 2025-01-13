@@ -94,12 +94,26 @@ class LSTMModel(nn.Module):
 <br /><br />
   
 <div align="center">
-LSTM 기법을 이용한 비트코인 가격 예측 모델
+    <strong style="font-size: 20px;">LSTM 기법을 이용한 비트코인 가격 예측 모델</strong>
 </div>
 
 <p align="center">
   <br /><br />
     <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/5aaeaf52-241f-49db-8f73-346758934352"/>
+  <br /><br />
+</p>
+<div align="center">
+      <p style="font-size: 5px;">학습 데이터: Binance Market Data BTCUSDT 12월 1시간 봉</p>
+</div>
+
+<br /><br /><br /><br />
+
+<div align="center">
+  <strong style="font-size: 20px;">Gradient Boosting 기법을 이용한 비트코인 가격 예측 모델</strong>
+</div>
+<p align="center">
+  <br /><br />
+    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/42c01d4d-b4b8-416e-9b0a-e9d3e8a1e598"/>
   <br /><br />
 </p>
 <div align="center">
@@ -109,28 +123,18 @@ LSTM 기법을 이용한 비트코인 가격 예측 모델
 <br /><br /><br /><br />
 
 <div align="center">
-Gradient Boosting 기법을 이용한 비트코인 가격 예측 모델
+  <strong style="font-size: 20px;">Gradient Boosting + LSTM (5:5)</strong>
 </div>
 <p align="center">
   <br /><br />
-    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/42c01d4d-b4b8-416e-9b0a-e9d3e8a1e598"/>
+    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/e4434ad5-adb6-49c4-8414-92736437b410"/>
   <br /><br />
 </p>
 <div align="center">
 학습 데이터: Binance Market Data BTCUSDT 12월 1시간 봉
 </div>
 
-<div align="center">
-Gradient Boosting + LSTM
-</div>
-<p align="center">
-  <br /><br />
-    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/42c01d4d-b4b8-416e-9b0a-e9d3e8a1e598"/>
-  <br /><br />
-</p>
-<div align="center">
-학습 데이터: Binance Market Data BTCUSDT 12월 1시간 봉
-</div>
+
 
 ## 설치
 
