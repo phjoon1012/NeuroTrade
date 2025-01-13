@@ -99,13 +99,38 @@ LSTM 기법을 이용한 비트코인 가격 예측 모델
 
 <p align="center">
   <br /><br />
-    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/d4880684-3ace-49bd-ad89-5f6b483f2284"/>
+    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/5aaeaf52-241f-49db-8f73-346758934352"/>
   <br /><br />
 </p>
 <div align="center">
 학습 데이터: Binance Market Data BTCUSDT 12월 1시간 봉
 </div>
-  
+
+<br /><br /><br /><br />
+
+<div align="center">
+Gradient Boosting 기법을 이용한 비트코인 가격 예측 모델
+</div>
+<p align="center">
+  <br /><br />
+    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/42c01d4d-b4b8-416e-9b0a-e9d3e8a1e598"/>
+  <br /><br />
+</p>
+<div align="center">
+학습 데이터: Binance Market Data BTCUSDT 12월 1시간 봉
+</div>
+
+<div align="center">
+Gradient Boosting + LSTM
+</div>
+<p align="center">
+  <br /><br />
+    <img width="700" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/42c01d4d-b4b8-416e-9b0a-e9d3e8a1e598"/>
+  <br /><br />
+</p>
+<div align="center">
+학습 데이터: Binance Market Data BTCUSDT 12월 1시간 봉
+</div>
 
 ## 설치
 
