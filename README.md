@@ -138,7 +138,21 @@ class LSTMModel(nn.Module):
 
   <br /><br />
   
+  #### 거래일에 따른 수익률 표시기
+
+  <p align="center">
+  <br /><br />
+    <img width="900" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/877c958c-e071-49f4-94d3-0a8c5ac4a195"/>
+  <br /><br />
+</p>
+
+  ##### 학습 데이터: Binance Market Data BTCUSDT 12월 1시간 봉
+  
+  ---
+
+  <br /><br />
 </div>
+
 
 
 
