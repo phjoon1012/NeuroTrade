@@ -7,8 +7,8 @@ def fetch_live_btc_data():
     url = "https://api.binance.com/api/v3/klines"
     params = {
         "symbol": "BTCUSDT",
-        "interval": "1m",  # 1-minute interval
-        "limit": 60,  # Last 60 minutes
+        "interval": "1m", 
+        "limit": 60,  
     }
     response = requests.get(url, params=params)
     if response.status_code != 200:
@@ -28,7 +28,7 @@ def live_btc_chart():
     btc_data = fetch_live_btc_data()
 
     if btc_data.empty:
-        return None  # Return None if no data is fetched
+        return None  
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(
