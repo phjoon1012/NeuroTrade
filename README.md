@@ -48,14 +48,16 @@
 
 ## 기능
 
-- **암호화폐 자동 매수/매도**: AWS based cryptocurrency trading bot.
-- **AI 기반 의사결정**: Utilizes advanced machine learning algorithms to optimize trading strategies.
-- **빅데이터 활용**: Designed to handle large-scale market data in real time.
+- **암호화폐 자동 매수/매도**  
+  AWS 기반 암호화폐 자동 매매 봇.
 
-> **TODO**: 
->  - 현재 승률
->  - PnL 
->  - 거래 내역
+- **AI 기반 의사결정**  
+  고급 머신러닝 알고리즘을 이용한 최적 매매 전략 구현.
+
+- **백테스팅 및 시각화**  
+  - 백테스트를 통해 전략의 성과 분석.  
+  - 거래 내역 및 자산 변동 그래프 제공.  
+  - **실시간 BTC 가격 차트** 및 **전략 비교 그래프** 제공.
 
 <br />
 
@@ -67,7 +69,19 @@
  - **AWS**: for hosting, scheduled tasks, data storage  
  - **Docker**: for containerization (if applicable)  
  - **Pandas / NumPy**: data manipulation  
- - **PyTorch**: machine learning models  
+ - **PyTorch**: machine learning models
+
+- **Streamlit**  
+  웹 기반 사용자 인터페이스 제공.
+
+- **Plotly**  
+  데이터 시각화 (거래 내역, 자산 커브 등).
+
+- **Binance Futures API**  
+  실시간 암호화폐 데이터 및 거래 기능.
+
+- **Docker**  
+  컨테이너화 및 배포 (옵션).
 
 <br />
 
@@ -157,10 +171,41 @@ class LSTMModel(nn.Module):
 
 
 
-## 설치
+## **설치 및 실행**
 
-> **TODO**: 
->  - 
->  - 
->  - 
+```plaintext
+├── app.py                # Streamlit 메인 애플리케이션
+├── helper.py             # 데이터 수집 및 유틸리티 함수
+├── strategies.py         # 거래 전략 클래스 정의
+├── visualization.py      # 시각화 함수 (그래프 생성)
+├── liveBTC.py            # 실시간 BTC 가격 차트
+├── requirements.txt      # Python 패키지 종속성
+├── .env                  # 환경 변수 (API 키/시크릿)
+└── README.md             # 프로젝트 설명서
+```
+### **1. 환경 설정**
 
+```bash
+Python 3.9+ 버전을 사용하는 것이 권장됩니다.
+
+# 필수 패키지 설치
+pip install -r requirements.txt
+
+streamlit run app.py
+```
+
+
+## **사용 방법**
+
+1. **전략 선택**:  
+   RSI, MACD, Bollinger Bands, 통합 전략 중 하나를 선택.
+
+2. **백테스트 변수 입력**:  
+   - 거래 화폐 (BTCUSDT, ETHUSDT 등).  
+   - 시간 단위 (1m, 5m, 15m 등).  
+   - 이익 실현/손실 제한 비율.  
+   - 초기 자본 및 마진.  
+
+3. **결과 분석**:  
+   - 승률, PnL, 거래 횟수, 자산 커브, 실시간 BTC 가격 확인.  
+   - **전략 비교**: Buy & Hold 대비 성과 확인.
