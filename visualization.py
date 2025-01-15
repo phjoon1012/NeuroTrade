@@ -30,11 +30,11 @@ def plot_equity_curve(equity_curve):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=equity_curve.index, y=equity_curve['Equity'], mode='lines'))
     fig.update_layout(
-        title="자본 변동",  # Title of the graph
-        xaxis_title="시간",  # X-axis label
-        yaxis_title="자산 (USD)",  # Y-axis label
-        template="plotly_white",  # Optional: Use a white template for better aesthetics
-        height=600  # Set the height of the graph
+        title="자본 변동",  
+        xaxis_title="시간", 
+        yaxis_title="자산 (USD)", 
+        template="plotly_white",  
+        height=600  
     )
     st.plotly_chart(fig)
 
@@ -51,14 +51,11 @@ def plot_comparison_chart(backtest_equity_curve, historical_data):
         backtest_equity_curve (pd.DataFrame): Backtest equity curve.
         historical_data (pd.DataFrame): Historical BTC price data.
     """
-    # Calculate Buy & Hold equity curve
     start_price = historical_data["Close"].iloc[0]
     historical_data["BuyHoldEquity"] = historical_data["Close"] / start_price * backtest_equity_curve["Equity"].iloc[0]
 
-    # Create the comparison graph
     fig = go.Figure()
 
-    # Add Backtest Equity Curve
     fig.add_trace(go.Scatter(
         x=backtest_equity_curve.index,
         y=backtest_equity_curve["Equity"],
@@ -67,7 +64,6 @@ def plot_comparison_chart(backtest_equity_curve, historical_data):
         line=dict(color="blue", width=2)
     ))
 
-    # Add Buy & Hold Equity Curve
     fig.add_trace(go.Scatter(
         x=historical_data["Open Time"],
         y=historical_data["BuyHoldEquity"],
@@ -76,7 +72,6 @@ def plot_comparison_chart(backtest_equity_curve, historical_data):
         line=dict(color="green", width=2, dash="dot")
     ))
 
-    # Customize layout
     fig.update_layout(
         title="백테스팅 전략 vs. 매수 후 보류",
         xaxis_title="시간",
