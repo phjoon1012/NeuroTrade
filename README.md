@@ -28,6 +28,13 @@
 |[@phjoon1012](https://github.com/codus090880](https://github.com/phjoon1012))|[@조현정](https://github.com/kyuyounglee)|[@조영훈](https://github.com/ppim321)|[@원유형](https://github.com/silenc3502)| [@전서빈](https://github.com/silenc3502)|[@편성민](https://github.com/silenc3502)| [@정소열](https://github.com/silenc3502)| 
 | 팀장 | 팀원 | 팀원 | 팀원 | 팀원 | 팀원 | 팀원 |
 
+<p align="center">
+  <br /><br />
+    <img width="500" alt="Screenshot 2025-01-10 at 7 33 27 PM" src="https://github.com/user-attachments/assets/3128d4e9-ac4b-430f-aae1-612c891bc507"/>
+  <br /><br />
+</p>
+
+
 <br />
 
 ## 목차
@@ -39,6 +46,7 @@
 5. 이용
 6. 프로젝트 구조
 8. 라이센스
+
 
 ---
 
