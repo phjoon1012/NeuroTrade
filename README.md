@@ -20,10 +20,13 @@
 
 ## SK Networks AI 10기
 
-- **팀장**: 박현준  hi
-- **팀원**: 조현정, 정소열, 조영훈, 원유형, 전서빈, 편성민
+- **팀**:   
 
-
+| <img width="140" alt="profile" src="https://github.com/user-attachments/assets/8e06d681-5960-475a-9d4f-a583c6f73452" /> | <img width="140px" src="image/team_ks.jpg" /> | <img width="140px" src="image/team_mh.jpg" /> |  <img width="140px" src="image/team_hj.jpg" /> | <img width="140px" src="image/team_hj.jpg" /> | <img width="140px" src="image/team_hj.jpg" /> | <img width="140px" src="image/team_hj.jpg" /> |
+|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
+| 박현준 | 조현정 | 조영훈 | 원유형 | 전서빈 | 편성민 | 정소열 |
+|[@phjoon1012](https://github.com/codus090880](https://github.com/phjoon1012))|[@조현정](https://github.com/kyuyounglee)|[@조영훈](https://github.com/ppim321)|[@원유형](https://github.com/silenc3502)| [@전서빈](https://github.com/silenc3502)|[@편성민](https://github.com/silenc3502)| [@정소열](https://github.com/silenc3502)| 
+| 팀장 | 팀원 | 팀원 | 팀원 | 팀원 | 팀원 | 팀원 |
 
 <br />
 
