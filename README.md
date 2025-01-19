@@ -22,10 +22,10 @@
 
 - **팀**:   
 
-| <img width="140" alt="profile" src="https://github.com/user-attachments/assets/8e06d681-5960-475a-9d4f-a583c6f73452" /> | <img width="140px" src="image/team_ks.jpg" /> | <img width="140px" src="image/team_mh.jpg" /> |  <img width="140px" src="image/team_hj.jpg" /> | <img width="140px" src="image/team_hj.jpg" /> | <img width="140px" src="image/team_hj.jpg" /> | <img width="140px" src="https://github.com/user-attachments/assets/93e806d4-2c3a-4ef1-a851-c777b8b8a21a" /> |
+| <img width="140" alt="profile" src="https://github.com/user-attachments/assets/8e06d681-5960-475a-9d4f-a583c6f73452" /> | <img width="140px" src="image/team_ks.jpg" /> | <img width="140px" src="image/team_mh.jpg" /> |  <img width="140px" src="!https://github.com/user-attachments/assets/59c673d1-7ad1-4f0b-906d-cc36303d4cd6" /> | <img width="140px" src="image/team_hj.jpg" /> | <img width="140px" src="image/team_hj.jpg" /> | <img width="140px" src="https://github.com/user-attachments/assets/93e806d4-2c3a-4ef1-a851-c777b8b8a21a" /> |
 |:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
 | 박현준 | 조현정 | 조영훈 | 원유형 | 전서빈 | 편성민 | 정소열 |
-|[@phjoon1012](https://github.com/codus090880](https://github.com/phjoon1012))|[@조현정](https://github.com/kyuyounglee)|[@조영훈](https://github.com/ppim321)|[@원유형](https://github.com/silenc3502)| [@전서빈](https://github.com/silenc3502)|[@편성민](https://github.com/silenc3502)| [@정소열]()| 
+|[@phjoon1012](https://github.com/codus090880](https://github.com/phjoon1012))|[@조현정](https://github.com/kyuyounglee)|[@조영훈](https://github.com/ppim321)|[@원유형](https://github.com/uhyeong)| [@전서빈](https://github.com/silenc3502)|[@편성민](https://github.com/silenc3502)| [@정소열]()| 
 | 팀장 | 팀원 | 팀원 | 팀원 | 팀원 | 팀원 | 팀원 |
 
 <p align="center">
