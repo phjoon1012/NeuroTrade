@@ -1,7 +1,7 @@
 <div align="center">
-
-# **Cryptocurrency - AlgoTrading**  
-### _기계학습을 이용한 암호화폐의 자동매매_  
+  
+# **NeuroTrade**
+### _AI 기반 암호화폐 자동매매 서비스_  
 
 <p align="center">
   <br /><br />
