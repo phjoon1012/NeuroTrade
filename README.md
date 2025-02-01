@@ -6,7 +6,7 @@
 <p align="center">
   <br /><br />
   <img 
-    src="https://github.com/user-attachments/assets/b6565023-e63e-4d49-9f87-7ac1fe364f3c"
+    src="frontend/public/FullLogo_Transparent.png"
     alt="Centered Image"
     width="700" 
     style="margin-bottom:100px;"
