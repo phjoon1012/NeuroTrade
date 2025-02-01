@@ -6,7 +6,7 @@
 <p align="center">
   <br /><br />
   <img 
-    src="frontend/public/FullLogo_Transparent.png"
+    src="frontend/public/FullLogo.png"
     alt="Centered Image"
     width="700" 
     style="margin-bottom:100px;"
