@@ -29,4 +29,5 @@ export const logoutUser = () =>
       "X-CSRFToken": getCSRFToken(),  // Attach CSRF token
     },
   });
-  export const fetchUserInfo = () => API.get("/users/me/");
+export const fetchUserInfo = () => API.get("/users/me/");
+export const fetchUserCount = () => API.get("/users/count/");

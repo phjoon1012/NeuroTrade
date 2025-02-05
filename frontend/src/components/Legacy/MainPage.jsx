@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./MainPage.css";
+// import "./MainPage.css";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../api";  // Adjust path if necessary
+import { logoutUser } from "../../api";  // Adjust path if necessary
 import Dashboard from "./Sidebar/Dashboard";
 import Backtesting from "./Sidebar/Backtesting";
 import UserSettings from "./Sidebar/UserSettings";

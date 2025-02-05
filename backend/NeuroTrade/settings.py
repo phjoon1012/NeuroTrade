@@ -37,6 +37,22 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '867755661512-6p4s7d8ko9im6ntqfjkiegc101u8va5m.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 # Explicitly allow the Content-Type header
 
 
@@ -56,6 +72,7 @@ CORS_ALLOW_METHODS = [
 
 INSTALLED_APPS = [
     "corsheaders",
+    'django.contrib.sites',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -63,11 +80,31 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rest_framework',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'users',
     'dashboard',
     'strategies',
-    'backtesting',
+    'backtest',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = 'http://localhost:3000/'
+LOGOUT_REDIRECT_URL = 'http://localhost:3000/'
+
+SOCIALACCOUNT_LOGIN_ON_GET=True
+
+# Static files setup
+
+# Add this line for STATIC_ROOT
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Must be first
@@ -76,6 +113,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',  # CSRF protection middleware
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware', 
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -85,7 +123,7 @@ ROOT_URLCONF = "NeuroTrade.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -104,27 +142,31 @@ WSGI_APPLICATION = "NeuroTrade.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'neurotrade_db',
-        'USER': 'root',
-        'PASSWORD': 'sksdlsrks79',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'neurotrade_db',
-#         'USER': 'admin',
-#         'PASSWORD': 'NeuroTrade1234',
-#         'HOST': 'neurotrade-db.c7guwwegufm.ap-northeast-2.rds.amazonaws.com',
+#         'USER': 'root',
+#         'PASSWORD': 'sksdlsrks79',
+#         'HOST': 'localhost',
 #         'PORT': '3306',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'testdb',
+        'USER': 'admin',
+        'PASSWORD': 'testdb1234',
+        'HOST': 'testdb.c7qguwwegufm.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '3306',
+    }
+}
+
+SOCIALACCOUNT_ADAPTER = 'users.adapters.CustomSocialAccountAdapter'
+
 
 AUTH_USER_MODEL = 'users.User'
 # Password validation

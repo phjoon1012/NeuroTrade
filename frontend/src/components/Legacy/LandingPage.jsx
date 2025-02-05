@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./LandingPage.css";
-import { loginUser } from "../api"; // Ensure the correct path to api.js
+// import "./LandingPage.css";
+import { loginUser } from "../../api"; // Ensure the correct path to api.js
 
 const LandingPage = () => {
   const [id, setId] = useState("");

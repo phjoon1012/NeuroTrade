@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
+from cryptography.fernet import Fernet
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+
 
 # User Manager
 class UserManager(BaseUserManager):
@@ -31,11 +33,21 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
+    
+    # OAuth-related fields
+    google_id = models.CharField(max_length=255, blank=True, null=True)  # Google account ID
+    profile_picture = models.URLField(blank=True, null=True)  # Google profile picture
+    
+    # API keys for trading
     api_key = models.CharField(max_length=255, blank=True, null=True)
     api_secret = models.CharField(max_length=255, blank=True, null=True)
+    
+    # Subscription and activity
     is_subscribed = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    
+    # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -44,9 +56,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    # Methods for API secret handling
     def set_api_secret(self, raw_api_secret):
-        self.api_secret = make_password(raw_api_secret) 
-        
+        self.api_secret = cipher_suite.encrypt(raw_api_secret.encode()).decode()
+
+        self.api_secret = make_password(raw_api_secret)
+
     def check_api_secret(self, raw_api_secret):
         return check_password(raw_api_secret, self.api_secret)
 
