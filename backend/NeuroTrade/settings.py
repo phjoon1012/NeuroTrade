@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     'users',
     'dashboard',
     'strategies',
-    'backtesting',
+    'backtesting'
 ]
 
 MIDDLEWARE = [
@@ -109,9 +109,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'neurotrade_db',
         'USER': 'root',
-        'PASSWORD': 'sksdlsrks79',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '3307',
     }
 }
 
