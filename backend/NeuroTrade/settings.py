@@ -119,10 +119,10 @@ WSGI_APPLICATION = "NeuroTrade.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'neurotrade_db',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'NAME': 'testdb',
+        'USER': 'admin',
+        'PASSWORD': 'testdb1234',
+        'HOST': 'testdb.c7qguwwegufm.ap-northeast-2.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
