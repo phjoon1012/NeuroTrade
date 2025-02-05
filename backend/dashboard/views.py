@@ -12,7 +12,7 @@ def recent_trades(request):
     """ 최근 10개의 봇을 이용한 거래 내역 반환 """
     trades = Trades.objects.select_related('bot').order_by('-trade_time')[:10]
 
-    trade_list = [
+    trade_list = [ 
         {
             'trade_time': trade.trade_time.strftime("%Y-%m-%d %H:%M"),
             'bot_name': trade.bot.name,
