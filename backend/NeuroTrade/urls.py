@@ -22,5 +22,10 @@ urlpatterns = [
     path('api/users/', include('users.urls')),          # Include user routes
     path('api/dashboard/', include('dashboard.urls')),
     path('api/strategies/', include('strategies.urls')),
+<<<<<<< HEAD
     path('api/backtesting/', include('backtesting.urls')),
+=======
+    path('api/backtesting/', include('backtest.urls')),
+    path('accounts/', include('allauth.urls')),  # Allauth URLs
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
 ]

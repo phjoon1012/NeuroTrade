@@ -1,8 +1,16 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
+<<<<<<< HEAD
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+=======
+from cryptography.fernet import Fernet
+
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+
+
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
 # User Manager
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password=None, api_secret=None, **extra_fields):
@@ -31,11 +39,29 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
+<<<<<<< HEAD
     api_key = models.CharField(max_length=255, blank=True, null=True)
     api_secret = models.CharField(max_length=255, blank=True, null=True)
     is_subscribed = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+=======
+    
+    # OAuth-related fields
+    google_id = models.CharField(max_length=255, blank=True, null=True)  # Google account ID
+    profile_picture = models.URLField(blank=True, null=True)  # Google profile picture
+    
+    # API keys for trading
+    api_key = models.CharField(max_length=255, blank=True, null=True)
+    api_secret = models.CharField(max_length=255, blank=True, null=True)
+    
+    # Subscription and activity
+    is_subscribed = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    
+    # Timestamps
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -44,9 +70,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+<<<<<<< HEAD
     def set_api_secret(self, raw_api_secret):
         self.api_secret = make_password(raw_api_secret) 
         
+=======
+    # Methods for API secret handling
+    def set_api_secret(self, raw_api_secret):
+        self.api_secret = cipher_suite.encrypt(raw_api_secret.encode()).decode()
+
+        self.api_secret = make_password(raw_api_secret)
+
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
     def check_api_secret(self, raw_api_secret):
         return check_password(raw_api_secret, self.api_secret)
 

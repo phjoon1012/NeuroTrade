@@ -1,0 +1,78 @@
+/* Strategies.css */
+.strategies {
+    background-color: #fdfdfd;
+    font-family: 'Arial', sans-serif;
+    justify-content: center;
+    
+}
+
+.strategy-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    justify-content: center !important;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.strategy-card {
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.strategy-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.strategy-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    transition: transform 0.5s ease;
+    z-index: 0;
+}
+
+.strategy-card:hover::before {
+    transform: scale(1.2);
+}
+
+.strategy-card h3 {
+    color: #1b5fc6;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    position: relative;
+    z-index: 1;
+}
+
+.strategy-card p {
+    color: #555;
+    margin: 8px 0;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+}
+
+/* Highlight important stats */
+.strategy-card p strong {
+    color: #1b5fc6;
+    font-weight: bold;
+}
+
+/* Subtle border animation */
+.strategy-card:hover {
+    border: 2px solid #1b5fc6;
+}

@@ -1,0 +1,39 @@
+/* src/components/MyInfo.css */
+
+.my-info {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    color: #333;
+    border-radius: 10px;
+    width: 60%;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .my-info h2 {
+    font-size: 2rem;
+    color: #1b5fc6;
+    margin-bottom: 20px;
+  }
+  
+  .my-info p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 50px;
+    color: #1b5fc6;
+  }
+
+
+  

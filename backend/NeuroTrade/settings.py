@@ -11,7 +11,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+<<<<<<< HEAD
 
+=======
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -56,6 +63,10 @@ CORS_ALLOW_METHODS = [
 
 INSTALLED_APPS = [
     "corsheaders",
+<<<<<<< HEAD
+=======
+    'django.contrib.sites',
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -63,12 +74,41 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rest_framework',
+<<<<<<< HEAD
     'users',
     'dashboard',
     'strategies',
     'backtesting',
 ]
 
+=======
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'users',
+    'dashboard',
+    'strategies',
+    'backtest',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = 'http://localhost:3000/'
+LOGOUT_REDIRECT_URL = 'http://localhost:3000/'
+
+SOCIALACCOUNT_LOGIN_ON_GET=True
+
+# Static files setup
+
+# Add this line for STATIC_ROOT
+
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Must be first
     'django.middleware.security.SecurityMiddleware',
@@ -76,6 +116,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',  # CSRF protection middleware
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+<<<<<<< HEAD
+=======
+    'allauth.account.middleware.AccountMiddleware', 
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -85,7 +129,11 @@ ROOT_URLCONF = "NeuroTrade.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
+<<<<<<< HEAD
         "DIRS": [],
+=======
+        "DIRS": [BASE_DIR / "templates"],
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -104,6 +152,7 @@ WSGI_APPLICATION = "NeuroTrade.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+<<<<<<< HEAD
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -115,17 +164,43 @@ DATABASES = {
     }
 }
 
+=======
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'neurotrade_db',
+<<<<<<< HEAD
 #         'USER': 'admin',
 #         'PASSWORD': 'NeuroTrade1234',
 #         'HOST': 'neurotrade-db.c7guwwegufm.ap-northeast-2.rds.amazonaws.com',
+=======
+#         'USER': 'root',
+#         'PASSWORD': 'sksdlsrks79',
+#         'HOST': 'localhost',
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
 #         'PORT': '3306',
 #     }
 # }
 
+<<<<<<< HEAD
+=======
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'testdb',
+        'USER': 'admin',
+        'PASSWORD': 'testdb1234',
+        'HOST': 'testdb.c7qguwwegufm.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '3306',
+    }
+}
+
+SOCIALACCOUNT_ADAPTER = 'users.adapters.CustomSocialAccountAdapter'
+
+
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
 AUTH_USER_MODEL = 'users.User'
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

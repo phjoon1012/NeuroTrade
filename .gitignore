@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 __pycache__/
 *.py[cod]
 *$py.class
@@ -174,3 +175,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+=======
+
+.env.env
+.env
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
