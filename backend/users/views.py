@@ -49,10 +49,11 @@ def login_view(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])  # Ensure only logged-in users can access
 def user_info_view(request):
-    print("User Info View Accessed")  # Debug
-    print("Authenticated User:", request.user)
+   
     
     user = request.user
+
+    
     return Response({
         'username': user.username,
         'email': user.email,

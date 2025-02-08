@@ -57,6 +57,18 @@ CORS_ALLOW_METHODS = [
     'PUT',
 ]
 
+CORS_ALLOW_HEADERS = [
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+]
+
 
 
 # Application definition
@@ -156,10 +168,10 @@ WSGI_APPLICATION = "NeuroTrade.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'neurotrade_db',
-        'USER': 'root',
-        'PASSWORD': 'sksdlsrks79',
-        'HOST': 'localhost',
+        'NAME': 'testdb',
+        'USER': 'admin',
+        'PASSWORD': 'testdb1234',
+        'HOST': 'testdb.c7qguwwegufm.ap-northeast-2.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
