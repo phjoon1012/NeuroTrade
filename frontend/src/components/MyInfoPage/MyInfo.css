@@ -1,39 +1,86 @@
-/* src/components/MyInfo.css */
+.dashboard {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+  margin-top: 50px; /* ✅ Adds space to prevent overlap with header */
+  font-family: Arial, sans-serif;
+}
 
-.my-info {
-    padding: 40px 20px;
-    background-color: #ffffff;
-    color: #333;
-    border-radius: 10px;
-    width: 60%;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .my-info h2 {
-    font-size: 2rem;
-    color: #1b5fc6;
-    margin-bottom: 20px;
-  }
-  
-  .my-info p {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-  }
-  
-  .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-  }
-  
-  .loading {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-top: 50px;
-    color: #1b5fc6;
-  }
+/* ✅ Title Centered */
+.dashboard-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #1b1f3a;
+}
 
+/* ✅ Grid Layout: Ensures Equal Card Sizes */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch; /* ✅ Ensures all cards have the same height */
+}
 
-  
+/* ✅ Dashboard Cards */
+.dashboard-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-height: 300px; /* ✅ Ensures all cards are the same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ✅ Balance & Pie Chart */
+.balance-card canvas {
+  max-width: 250px;
+  margin: auto;
+}
+
+/* ✅ Profit Line Chart */
+.profit-chart canvas {
+  max-width: 300px;
+  margin: auto;
+}
+
+/* ✅ Trade History */
+.trade-history-card {
+  grid-column: span 3; /* ✅ Makes the table take full width */
+  text-align: left;
+  overflow-x: auto;
+}
+
+.trade-history-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trade-history-card th, 
+.trade-history-card td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.trade-history-card th {
+  background: #f1f1f1;
+}
+
+.trade-history-card tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ✅ Profit/Loss Color */
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}

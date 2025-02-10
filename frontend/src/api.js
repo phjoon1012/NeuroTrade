@@ -13,13 +13,20 @@ const getCSRFToken = () => {
 };
 
 // Axios instance with CSRF token and credentials
+// const API = axios.create({
+//   baseURL: "http://localhost:8000/api",
+//   withCredentials: true,  // Ensure cookies (sessionid, csrftoken) are sent with requests
+//   headers: {
+//     "Content-Type": "application/json",
+//     "X-CSRFToken": getCSRFToken(),  // Attach CSRF token
+//   },
+// });
+
+
 const API = axios.create({
   baseURL: "http://localhost:8000/api",
-  withCredentials: true,  // Ensure cookies (sessionid, csrftoken) are sent with requests
-  headers: {
-    "Content-Type": "application/json",
-    "X-CSRFToken": getCSRFToken(),  // Attach CSRF token
-  },
+  withCredentials: true,  // Ensure session cookies are sent
+  headers: { "Content-Type": "application/json" },
 });
 
 export const loginUser = (credentials) => API.post("/users/login/", credentials);

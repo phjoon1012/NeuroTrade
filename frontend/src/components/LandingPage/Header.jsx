@@ -37,7 +37,7 @@ const Header = () => {
         <a href="/strategies">전략</a>
         <a href="/backtesting">백테스팅</a>
         <a href="/myinfo">내 정보</a>
-        <a href="#support">고객센터</a>
+        <a href="/community">커뮤니티</a>
 
       </nav>
       <div className="auth-links">

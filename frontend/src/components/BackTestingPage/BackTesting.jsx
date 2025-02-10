@@ -1,62 +1,41 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Line } from "react-chartjs-2";
-import 'chart.js/auto';
-
+import "chart.js/auto";
 import Header from "../LandingPage/Header";
-import "./BacktestForm.css";  // Import custom styles
+import { runBacktest } from "../../api/backtestingApi";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "./BacktestForm.css";
 
-const BacktestForm = () => {
-  const [params, setParams] = useState({
-    ema_period: 200,
-    rsi_period: 30,
-    tp: 0.02,
-    sl: 0.01
-  });
+// Placeholder strategies
+const strategies = [
+  { id: 1, name: "MACD Strategy", description: "Uses MACD crossover signals.", image: "/images/macd.png" },
+  { id: 2, name: "RSI Strategy", description: "Buy when oversold, sell when overbought.", image: "/images/rsi.png" },
+  { id: 3, name: "Bollinger Bands", description: "Trades based on volatility.", image: "/images/bollinger.png" },
+];
 
+const BacktestPage = () => {
+  const [selectedStrategy, setSelectedStrategy] = useState(strategies[0]);
+  const [params, setParams] = useState({ ema_period: 200, rsi_period: 30, tp: 0.02, sl: 0.01 });
   const [result, setResult] = useState(null);
   const [equityData, setEquityData] = useState([]);
+  const [plot, setPlot] = useState("");
+  const [loading, setLoading] = useState(false); // ✅ Added loading state
 
-  const handleChange = (e) => {
-    setParams({
-      ...params,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    setLoading(true); // Show loader while fetching
     try {
-      const response = await axios.post("http://localhost:8000/api/backtesting/run/", params);
-      setResult(response.data.stats);
-      setEquityData(response.data.equity_curve);
+      const data = await runBacktest(params);
+      setResult(data.stats);
+      setEquityData(data.equity_curve);
+      setPlot(data.plot);
     } catch (error) {
       console.error("Error running backtest:", error);
-    }
-  };
-
-  const chartData = {
-    labels: equityData.map(item => item.Date),
-    datasets: [
-      {
-        label: "Equity Curve",
-        data: equityData.map(item => item.Equity),
-        borderColor: "#1b5fc6",
-        backgroundColor: "rgba(27, 95, 198, 0.1)",
-        fill: true,
-        tension: 0.2,
-      }
-    ]
-  };
-
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: { display: true },
-    },
-    scales: {
-      x: { title: { display: true, text: "Date" }, ticks: { color: "#333" } },
-      y: { title: { display: true, text: "Equity ($)" }, ticks: { color: "#333" } }
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
@@ -64,56 +43,82 @@ const BacktestForm = () => {
     <div>
       <Header />
       <div className="backtest-container">
-        <h2>백테스팅 매개변수 입력</h2>
-        <form onSubmit={handleSubmit} className="backtest-form">
-          <label>EMA 기간:<input type="number" name="ema_period" value={params.ema_period} onChange={handleChange} /></label>
-          <label>RSI 기간:<input type="number" name="rsi_period" value={params.rsi_period} onChange={handleChange} /></label>
-          <label>이익 실현 (%):<input type="number" step="0.01" name="tp" value={params.tp} onChange={handleChange} /></label>
-          <label>손절매 (%):<input type="number" step="0.01" name="sl" value={params.sl} onChange={handleChange} /></label>
-          <button type="submit">백테스팅 실행</button>
-        </form>
+        <h2>선택 전략 & 백테스팅 실행</h2>
 
+        {/* ✅ Strategy Selection */}
+        <div className="strategy-selection">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 3000 }}
+            onSlideChange={(swiper) => setSelectedStrategy(strategies[swiper.activeIndex])}
+            className="strategy-carousel"
+          >
+            {strategies.map((strategy) => (
+              <SwiperSlide key={strategy.id}>
+                <div className="strategy-card">
+                  <img src={strategy.image} alt={strategy.name} className="strategy-image" />
+                  <h3>{strategy.name}</h3>
+                  <p>{strategy.description}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* ✅ Display Selected Strategy */}
+        <div className="selected-strategy-container">
+          <h3 className="selected-strategy">선택된 전략: {selectedStrategy.name}</h3>
+          <div>
+            <button onClick={handleSubmit} className="backtest-btn">
+            {loading ? "백테스팅 실행 중..." : "백테스팅 실행"}
+          </button>
+          </div>
+          
+        </div>
+
+        {/* ✅ Results Section */}
         {result && (
           <div className="backtest-results">
             <h3>백테스팅 결과</h3>
-            <div className="result-cards">
-  <div className="result-card">
-    <h4>최종 자산</h4>
-    <p>{result["Equity Final [$]"] !== null ? `$${result["Equity Final [$]"].toFixed(2)}` : "데이터 없음"}</p>
-  </div>
 
-  <div className={`result-card ${result["Return [%]"] > 0 ? 'positive' : 'negative'}`}>
-    <h4>수익률</h4>
-    <p>{result["Return [%]"] !== null ? `${result["Return [%]"].toFixed(2)}%` : "데이터 없음"}</p>
-  </div>
-
-  <div className="result-card">
-    <h4>최대 손실</h4>
-    <p>{result["Max. Drawdown [%]"] !== null ? `${result["Max. Drawdown [%]"].toFixed(2)}%` : "데이터 없음"}</p>
-  </div>
-
-  <div className="result-card">
-    <h4>총 거래 수</h4>
-    <p>{result["# Trades"] !== null ? result["# Trades"] : "데이터 없음"}</p>
-  </div>
-
-  <div className="result-card">
-    <h4>승률</h4>
-    <p>{result["Win Rate [%]"] !== null ? `${result["Win Rate [%]"].toFixed(2)}%` : "N/A"}</p>
-  </div>
-</div>
-
-{/* Raw JSON Display */}
-<div className="raw-json">
-  <h3>Raw JSON 데이터</h3>
-  <pre>{JSON.stringify(result, null, 2)}</pre>
-</div>
+            {/* ✅ Chart Section */}
+            {plot && (
+              <div className="chart-container">
+                <h4>백테스트 차트</h4>
+                <img src={plot} alt="Backtest Chart" className="backtest-chart" />
+              </div>
+            )}
 
             {equityData.length > 0 && (
               <div className="chart-container">
-                <Line data={chartData} options={chartOptions} />
+                <h4>수익 곡선</h4>
+                <Line
+                  data={{
+                    labels: equityData.map((item) => item.Date),
+                    datasets: [
+                      {
+                        data: equityData.map((item) => item.Equity),
+                        label: "Equity Curve",
+                        borderColor: "#1b5fc6",
+                        backgroundColor: "rgba(27, 95, 198, 0.1)",
+                        fill: true,
+                        tension: 0.2,
+                      },
+                    ],
+                  }}
+                />
               </div>
             )}
+
+            {/* ✅ Raw JSON Output (For Debugging) */}
+            <div className="raw-json">
+              <h3>백테스트 데이터</h3>
+              <pre>{JSON.stringify(result, null, 2)}</pre>
+            </div>
           </div>
         )}
       </div>
@@ -121,4 +126,4 @@ const BacktestForm = () => {
   );
 };
 
-export default BacktestForm;
+export default BacktestPage;

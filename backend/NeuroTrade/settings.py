@@ -16,8 +16,15 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+print("BASE_DIR:", BASE_DIR)
+REACT_BUILD_DIR = BASE_DIR / "frontend" / "build"
 
+STATICFILES_DIRS = [
+    REACT_BUILD_DIR / "static",  # React's static assets (JS, CSS, images)
+]
+
+STATIC_URL = "/static/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -31,15 +38,29 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Allow React frontend running on localhost
+    "http://localhost:8000",  # Allow React frontend running on localhost
 ]
 
 CORS_ALLOW_CREDENTIALS = True  # En
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-]
 
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': os.getenv('GOOGLE_CLIENT_ID'),
+            'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 # Explicitly allow the Content-Type header
 
 
@@ -58,7 +79,6 @@ CORS_ALLOW_METHODS = [
 # Application definition
 
 INSTALLED_APPS = [
-    "corsheaders",
     'django.contrib.sites',
     "django.contrib.admin",
     "django.contrib.auth",
@@ -75,6 +95,7 @@ INSTALLED_APPS = [
     'dashboard',
     'strategies',
     'backtest',
+    'community',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -84,8 +105,8 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'http://localhost:3000/'
-LOGOUT_REDIRECT_URL = 'http://localhost:3000/'
+LOGIN_REDIRECT_URL = 'http://localhost:8000/'
+LOGOUT_REDIRECT_URL = 'http://localhost:8000/'
 
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
@@ -94,7 +115,6 @@ SOCIALACCOUNT_LOGIN_ON_GET=True
 # Add this line for STATIC_ROOT
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # Must be first
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -110,7 +130,7 @@ ROOT_URLCONF = "NeuroTrade.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [REACT_BUILD_DIR],  # React's index.html location
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -150,7 +170,7 @@ DATABASES = {
         'HOST': 'testdb.c7qguwwegufm.ap-northeast-2.rds.amazonaws.com',
         'PORT': '3306',
     }
-}
+} 
 
 SOCIALACCOUNT_ADAPTER = 'users.adapters.CustomSocialAccountAdapter'
 
@@ -184,12 +204,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',  # For session-based auth
         # 'rest_framework_simplejwt.authentication.JWTAuthentication',  # Uncomment if using JWT
+
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',

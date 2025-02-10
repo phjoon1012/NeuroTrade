@@ -1,78 +1,94 @@
-/* Strategies.css */
 .strategies {
     background-color: #fdfdfd;
     font-family: 'Arial', sans-serif;
-    justify-content: center;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
+/* ✅ Centered Title */
+.strategy-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1b1f3a;
+    margin-bottom: 20px;
+}
+
+/* ✅ Grid Layout: Ensures Neat Alignment */
 .strategy-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px;
-    justify-content: center !important;
-    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    justify-content: center;
     width: 100%;
     max-width: 1200px;
 }
 
+/* ✅ Strategy Card Styling */
 .strategy-card {
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    padding: 25px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer; /* ✅ Makes it clickable */
+    border: 2px solid transparent;
 }
 
+/* ✅ Hover Effect */
 .strategy-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.strategy-card::before {
-    content: "";
+/* ✅ Highlight Selected Cards */
+.strategy-card.selected {
+    border: 3px solid #28a745 !important; /* ✅ Green Border */
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
+}
+
+/* ✅ "선택됨" Label */
+.selected-label {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    transition: transform 0.5s ease;
-    z-index: 0;
+    top: 10px;
+    right: 10px;
+    background: #28a745;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
-.strategy-card:hover::before {
-    transform: scale(1.2);
-}
-
+/* ✅ Strategy Card Text */
 .strategy-card h3 {
     color: #1b5fc6;
     margin-bottom: 10px;
-    font-size: 1.6rem;
-    position: relative;
-    z-index: 1;
+    font-size: 1.4rem;
 }
 
 .strategy-card p {
     color: #555;
-    margin: 8px 0;
+    margin: 6px 0;
     line-height: 1.4;
-    position: relative;
-    z-index: 1;
+    font-size: 14px;
+    text-align: center;
 }
 
-/* Highlight important stats */
+/* ✅ Important Stats */
 .strategy-card p strong {
     color: #1b5fc6;
     font-weight: bold;
 }
 
-/* Subtle border animation */
-.strategy-card:hover {
-    border: 2px solid #1b5fc6;
+/* ✅ Responsive Adjustments */
+@media (max-width: 768px) {
+    .strategy-cards {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
 }
