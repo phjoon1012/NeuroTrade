@@ -1,3 +1,4 @@
+jenny/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -173,5 +174,5 @@ $RECYCLE.BIN/
 *.msp
 
 # Windows shortcuts
+
 *.lnk
-.venv/Lib/site-packages/_distutils_hack/__pycache__/__init__.cpython-311.pyc

@@ -1,0 +1,331 @@
+/* LandingPage.css */
+
+/* General Page Styling */
+.landing-page {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  /* Header Styling */
+  .header {
+    font-family: Arial, sans-serif;
+    
+    display: flex;
+    justify-content:space-around ;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo-image {
+    height: 20px; /* Adjust the height as needed */
+    width: auto;
+  }
+  
+  .nav-links a {
+    margin: 0 30px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .nav-links a:hover {
+    color: #1b5fc6;
+  }
+  
+  .auth-links button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-btn {
+    background-color: transparent;
+    color: #1b5fc6;
+    border: 1px solid #1b5fc6;
+  }
+  
+  .signup-btn {
+    background-color: #1b5fc6;
+    color: #ffffff;
+  }
+  
+  /* Market Stats Section */
+  .market-stats {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #e9f4ff;
+  }
+  
+  .market-stats h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .market-stats p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  
+  .stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  .stat h2 {
+    font-size: 2.5rem;
+    color: #1b5fc6;
+  }
+  
+  .stat p {
+    font-size: 1rem;
+    color: #777;
+  }
+  
+  .buttons button {
+    margin: 20px 10px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .primary-btn {
+    background-color: #1b5fc6;
+    color: #ffffff;
+  }
+  
+  .secondary-btn {
+    background-color: #ffffff;
+    color: #1b5fc6;
+    border: 1px solid #1b5fc6;
+  }
+  
+  /* Coin Prices Section */
+
+  .chart-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .coin-prices {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    text-align: center;
+  }
+  
+  .coin-prices h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .coin-prices table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  
+  .coin-prices th, .coin-prices td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .positive {
+    color: #4caf50;
+  }
+  
+  .negative {
+    color: #f44336;
+  }
+
+/* NeuroTrade Pitch Section */
+.neurotrade-pitch {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    color: #333;
+  }
+  
+  .neurotrade-pitch h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .neurotrade-pitch .highlight {
+    color: #1b5fc6;
+    font-weight: bold;
+  }
+  
+  .neurotrade-pitch p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  
+  .features-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .feature {
+    background-color: #e9f4ff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 280px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #1b5fc6;
+  }
+  
+  .feature p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .neurotrade-pitch .primary-btn {
+    padding: 12px 30px;
+    background-color: #1b5fc6;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .neurotrade-pitch .primary-btn:hover {
+    background-color: #154ba0;
+  }
+
+
+
+  /* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh; /* Takes up 80% of the viewport */
+    background-color: #e9f4ff; /* Light blue background for contrast */
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    color: #333;
+  }
+  
+  .hero-logo {
+    width: 500px;
+    height: auto;
+    margin-bottom: 40px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    color: #1b5fc6;
+    margin-bottom: 15px;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  .hero-content .primary-btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    background-color: #1b5fc6;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .hero-content .primary-btn:hover {
+    background-color: #174aa3;
+  }
+
+/* Key Features Section with Grid Layout */
+.key-features {
+    background-color: #ffffff;
+    padding: 50px 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .key-features h2 {
+    font-size: 2rem;
+    color: #1b5fc6;
+    margin-bottom: 40px;
+  }
+  
+  /* Grid Container */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Individual Feature Cards */
+  .feature-block {
+    background-color: #f5f5f5;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+  }
+  
+  .feature-block h3 {
+    font-size: 1.4rem;
+    color: #1b5fc6;
+    margin-bottom: 15px;
+  }
+  
+  .feature-block p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Hover Effect for Interactivity */
+  .feature-block:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  .user-count {
+    font-size: 1.2rem;
+    color: #1b5fc6;
+    margin-top: 30px;
+    animation: blink 1.5s infinite; /* Blink effect */
+  }

@@ -5,6 +5,13 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt
+<<<<<<< HEAD
+=======
+from django.contrib.auth import get_user_model
+from .serializers import UserSerializer
+
+
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
 import json
 
 
@@ -53,4 +60,41 @@ def user_info_view(request):
         'api_key': getattr(user, 'api_key', ''),
         'api_secret': getattr(user, 'api_secret', ''),
         'trading_preference': getattr(user, 'trading_preference', ''),
+<<<<<<< HEAD
     })
+=======
+    })
+
+
+def user_count_view(request):
+    User = get_user_model()
+    user_count = User.objects.count()
+    return JsonResponse({'user_count': user_count})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_user_info(request):
+    user = request.user
+    return Response({
+        "username": user.username,
+        "email": user.email
+    })
+
+@api_view(['GET'])
+def get_user_profile(request):
+    if request.user.is_authenticated:
+        return Response({
+            'username': request.user.username,
+            'email': request.user.email,
+            'profile_picture': request.user.profile_picture,
+        })
+    return Response({'error': 'User not authenticated'}, status=401)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_profile(request):
+    user = request.user
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
+>>>>>>> f28d7c64b9f09a5318a3482598d0f4d5ce9e3a7f
