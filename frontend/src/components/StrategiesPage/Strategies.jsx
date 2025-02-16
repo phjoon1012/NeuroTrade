@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchStrategies } from "../../api/StrategiesAPI";
+import { fetchStrategies } from "../../api/strategiesApi";
 import Header from "../LandingPage/Header";
 import "./Strategies.css";
 

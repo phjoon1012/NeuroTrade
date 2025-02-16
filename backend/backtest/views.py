@@ -2,7 +2,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
-from backtesting import Backtest, Strategy
+from backtesting import Backtest
+from backtesting.test import GOOG
+
 import pandas as pd
 import ta
 import matplotlib
@@ -11,7 +13,8 @@ import io
 import base64
 import numpy as np  # ✅ Fix: Handle NaN/Inf values
 import requests
-
+from .Strategies.RSI_EMA import rsi_ema, SmaCross
+from .Strategies.MACD_Cross import MACD_Crossover
 
 # ✅ Prevent Matplotlib from opening a new window
 matplotlib.use("Agg")  
@@ -69,43 +72,51 @@ def fetch_upbit_candlestick_data(market="KRW-BTC", unit=15, total_count=1000):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def run_backtest(request):
-    # Simulated Data
-    # dates = pd.date_range(start='2023-01-01', periods=20, freq='D')
-    # data = pd.DataFrame({
-    #     'Open': [100 + i for i in range(20)],
-    #     'High': [105 + i for i in range(20)],
-    #     'Low': [95 + i for i in range(20)],
-    #     'Close': [102 + i for i in range(20)],
-    #     'Volume': [1000 + i * 10 for i in range(20)]
-    # }, index=dates)
 
     data = fetch_upbit_candlestick_data(market="KRW-BTC", unit=15, total_count=1000)
 
     if data.empty:
         return Response({"error": "Failed to retrieve Upbit data"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     # Extract parameters from the request
-    ema_period = request.data.get('ema_period', 200)
-    rsi_period = request.data.get('rsi_period', 30)
-    tp = request.data.get('tp', 0.02)  # Take Profit
-    sl = request.data.get('sl', 0.01)  # Stop Loss
+    # ema_period = request.data.get('ema_period', 200)
+    # rsi_period = request.data.get('rsi_period', 30)
+    # tp = request.data.get('tp', 0.02)  # Take Profit
+    # sl = request.data.get('sl', 0.01)  # Stop Loss
 
-    # Define the custom strategy
-    class CustomStrategy(Strategy):
-        def init(self):
-            self.rsi = self.I(lambda x: ta.momentum.RSIIndicator(pd.Series(x), rsi_period).rsi(), self.data.Close)
-            self.ema = self.I(lambda x: ta.trend.EMAIndicator(pd.Series(x), ema_period).ema_indicator(), self.data.Close)
+    # # Define the custom strategy
+    # class CustomStrategy(Strategy):
+    #     def init(self):
+    #         self.rsi = self.I(lambda x: ta.momentum.RSIIndicator(pd.Series(x), rsi_period).rsi(), self.data.Close)
+    #         self.ema = self.I(lambda x: ta.trend.EMAIndicator(pd.Series(x), ema_period).ema_indicator(), self.data.Close)
 
-        def next(self):
-            price = self.data.Close[-1]
-            if not self.position:
-                if self.rsi[-2] < 30:
-                    self.buy(size=0.02, tp=price * (1 + tp), sl=price * (1 - sl))
-                elif self.rsi[-2] > 70:
-                    self.sell(size=0.02, tp=price * (1 - tp), sl=price * (1 + sl))
+    #     def next(self):
+    #         price = self.data.Close[-1]
+    #         if not self.position:
+    #             if self.rsi[-2] < 30:
+    #                 self.buy(size=0.02, tp=price * (1 + tp), sl=price * (1 - sl))
+    #             elif self.rsi[-2] > 70:
+    #                 self.sell(size=0.02, tp=price * (1 - tp), sl=price * (1 + sl))
+
+    strategy_map = {
+        "볼린저 밴드 전략": rsi_ema,
+        "RSI 전략": SmaCross,
+        "MACD 전략": MACD_Crossover,
+        "스토캐스틱 오실레이터 전략":rsi_ema,
+
+        #...추가
+    }
+
+    strategy_name = request.data.get("strategy")  
+    print(f"Received strategy: {strategy_name}")  
+
+    if strategy_name not in strategy_map:
+        return Response({"error": f"Invalid strategy '{strategy_name}'"}, status=status.HTTP_400_BAD_REQUEST)
+
+    strategy_class = strategy_map[strategy_name]
 
     try:
         # ✅ Run the backtest
-        bt = Backtest(data, CustomStrategy, cash=10000, commission=.002)
+        bt = Backtest(data, strategy_class, cash=10000, commission=.002)
         stats = bt.run()
 
         # ✅ Handle NaN/Inf values
