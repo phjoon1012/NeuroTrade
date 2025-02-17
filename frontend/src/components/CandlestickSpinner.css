@@ -15,10 +15,10 @@
 
 /* Green (Bullish) Candlestick */
 .candlestick.green {
-    background-color: #28a745;
+    background-color: #2b39ff;
 }
 
 /* Red (Bearish) Candlestick */
 .candlestick.red {
-    background-color: #dc3545;
+    background-color: #ffb011;
 }
