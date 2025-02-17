@@ -5,7 +5,7 @@ import NeuroTradePitch from "./NeuroTradePitch";
 import "./LandingPage.css";
 import HeroSection from "./HeroSection";
 import KeyFeatures from "./KeyFeatures";
-import CandlestickChart from "./ChartComponent";
+
 
 
 const LandingPage = () => {

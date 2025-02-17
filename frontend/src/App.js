@@ -58,7 +58,7 @@ const App = () => {
   return (
     <Router>
             <AnimatedRoutes />
-      </Router>
+    </Router>
   );
 };
 

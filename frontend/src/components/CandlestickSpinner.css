@@ -1,0 +1,24 @@
+.candlestick-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 80px;
+    width: 120px;
+    gap: 5px;
+}
+
+/* Base Candlestick Style */
+.candlestick {
+    width: 8px;
+    border-radius: 2px;
+}
+
+/* Green (Bullish) Candlestick */
+.candlestick.green {
+    background-color: #2b39ff;
+}
+
+/* Red (Bearish) Candlestick */
+.candlestick.red {
+    background-color: #ffb011;
+}
