@@ -3,7 +3,7 @@
   max-width: 1200px;
   margin: auto;
   background: white;
-  margin-top: 50px; /* ✅ Adds space to prevent overlap with header */
+  margin-top: 50px;
   font-family: Arial, sans-serif;
 }
 
