@@ -1,11 +1,9 @@
 from django.http import JsonResponse
-<<<<<<< HEAD
 from django.views import View
 import requests
 import jwt
 import uuid
 from .models import User
-=======
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -126,7 +124,6 @@ def get_balance(request):
         return Response({
             'error': f'잔고 정보를 가져오는데 실패했습니다: {str(e)}'
         }, status=400)
->>>>>>> feature/회원_정보_수정
 
 def dashboard_home(request):
     return JsonResponse({'message': 'Dashboard endpoint is working!'})

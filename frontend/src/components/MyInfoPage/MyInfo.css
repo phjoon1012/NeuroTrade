@@ -36,9 +36,6 @@
   }
 
 
-<<<<<<< HEAD
-  
-=======
 /* ✅ Dashboard Cards */
 .dashboard-card {
   background: white;
@@ -185,4 +182,8 @@
   font-family: monospace;
   letter-spacing: 2px;
 }
->>>>>>> feature/회원_정보_수정
+
+.dashboard {
+  padding: 20px;
+  max-width: 1200px;
+}
