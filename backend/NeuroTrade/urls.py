@@ -21,13 +21,11 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', include('users.urls')),          # Include user routes
-    path('api/dashboard/', include('dashboard.urls')),
     path('api/strategies/', include('strategies.urls')),
     path('api/backtesting/', include('backtest.urls')),
     path('api/community/', include('community.urls')),  # ✅ Make sure this is included
     path('accounts/', include('allauth.urls')),  # Allauth URLs
+    path('dashboard/', include('dashboard.urls')),  # 이 줄만 유지
     path('', TemplateView.as_view(template_name="index.html")),  # Serve React frontend
     re_path(r'^.*$', TemplateView.as_view(template_name="index.html")),
-
-
 ]

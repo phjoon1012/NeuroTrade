@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from cryptography.fernet import Fernet
 
 load_dotenv()  # Load environment variables from .env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,10 +39,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",  # Allow React frontend running on localhost
+    "http://localhost:3000",
+    "http://localhost:8000",
 ]
 
-CORS_ALLOW_CREDENTIALS = True  # En
+CORS_ALLOW_CREDENTIALS = True
 
 
 
@@ -68,7 +70,7 @@ SOCIALACCOUNT_PROVIDERS = {
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
-    'OPTIONS',  # This allows preflight requests
+    'OPTIONS',
     'PATCH',
     'POST',
     'PUT',
@@ -96,6 +98,7 @@ INSTALLED_APPS = [
     'strategies',
     'backtest',
     'community',
+    'corsheaders',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -115,6 +118,7 @@ SOCIALACCOUNT_LOGIN_ON_GET=True
 # Add this line for STATIC_ROOT
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -222,3 +226,16 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Fernet Key for API key encryption
+ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')
+if not ENCRYPTION_KEY:
+    ENCRYPTION_KEY = Fernet.generate_key()
+    with open('.env', 'a') as f:
+        f.write(f'\nENCRYPTION_KEY={ENCRYPTION_KEY.decode()}')
+FERNET = Fernet(ENCRYPTION_KEY if isinstance(ENCRYPTION_KEY, bytes) else ENCRYPTION_KEY.encode())
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://localhost:3000',
+]

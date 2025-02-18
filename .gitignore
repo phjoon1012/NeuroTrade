@@ -1,6 +1,9 @@
-
 .env.env
 .env
+
+# Encryption keys
+.env
+encryption_key.key
 
 __pycache__/
 *.pyc
