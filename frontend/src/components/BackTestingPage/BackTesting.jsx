@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+
 import { Line, Bar } from "react-chartjs-2"; // ✅ Imported Bar
 import "chart.js/auto";
 import Header from "../LandingPage/Header";
 import { runBacktest } from "../../api/backtestingApi";
 import "./BacktestForm.css";
+import axios from "axios";
 import { fetchStrategies } from "../../api/strategiesApi";
 
 const keyMetrics = {
@@ -39,6 +41,7 @@ const BacktestPage = () => {
     const loadStrategies = async () => {
       try {
         const strategiesData = await fetchStrategies(); // ✅ Use API function
+        setStrategies(strategiesData);
         console.log(strategiesData);
 
         if (strategiesData.length > 0) {
@@ -54,6 +57,13 @@ const BacktestPage = () => {
     loadStrategies();
   }, []);
 
+  useEffect(() => {
+    if (plot) {
+      console.log("✅ Injecting Plot HTML:", plot);
+      document.getElementById("plot-container").innerHTML = plot;
+    }
+  }, [plot]);
+
   const handleSubmit = async () => {
     if (!selectedStrategy) {
       alert("Please select a strategy.");
@@ -63,21 +73,22 @@ const BacktestPage = () => {
     setLoading(true);
     try {
       const requestData = {
-        strategy: selectedStrategy.bot__name, 
+        strategy: selectedStrategy.bot__name, // ✅ Send selected strategy
         ema_period: params.ema_period,
         rsi_period: params.rsi_period,
         tp: params.tp,
         sl: params.sl,
       };
 
-      console.log(requestData); // 리퀘스트 데이터 확인
+      console.log(requestData);
 
-      const data = await runBacktest(requestData); // 리퀘스트 데이터 api로 쟝고한테 쏘기
+      const data = await runBacktest(requestData);
       setResult(data.stats);
       setEquityData(data.equity_curve);
-      setPlot(data.plot);
+      setPlot(data.plot_html);
+      console.log("plot: " + data.plot_html);
     } catch (error) {
-      console.error("Error running backtest:", error); // 벡테스트 api쏘기 or 받기 실패
+      console.error("Error running backtest:", error);
     } finally {
       setLoading(false);
     }
@@ -238,7 +249,11 @@ const BacktestPage = () => {
                       }}
                     />
                   </div>
-
+                  
+                  <div className="plot-container">
+    <h4>📈 백테스트 결과 (Interactive Chart)</h4>
+    <div id="plot-container" />
+  </div>
                   {/* Cumulative Returns */}
                   <div className="chart-box">
                     <h4>누적 수익</h4>

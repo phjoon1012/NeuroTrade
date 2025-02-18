@@ -1,5 +1,15 @@
-
 .env.env
 .env
+<<<<<<< HEAD
 node_modules
 .venv
+=======
+
+# Encryption keys
+.env
+encryption_key.key
+
+__pycache__/
+*.pyc
+.venv/
+>>>>>>> feature/회원_정보_수정
