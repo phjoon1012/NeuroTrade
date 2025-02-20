@@ -155,10 +155,61 @@
 .subscribe-button:hover {
     background-color: #45a049;
 }
-.premium-disabled {
-    opacity: 0.5;
-    pointer-events: none; /* Disables clicks on the premium strategy if not subscribed */
+.unsubscribe-button {
+    position: fixed; /* 화면에 고정 */
+    bottom: 20px; /* 아래쪽 여백 */
+    right: 20px; /* 오른쪽 여백 */
+    padding: 12px 24px;
+    background-color: #ff4d4f; /* 🔴 구독 취소 버튼 색 (빨간색) */
+    color: white;
+    border: none;
+    border-radius: 50px; /* 버튼 둥글게 */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* 살짝 그림자 추가 */
+    transition: all 0.3s ease-in-out;
 }
+
+.unsubscribe-button:hover {
+    background-color: #d9363e; /* 🔴 조금 더 진한 빨간색으로 변경 */
+    transform: scale(1.05); /* 버튼 살짝 확대 */
+}
+
+.unsubscribe-button:active {
+    transform: scale(0.95); /* 버튼 클릭 시 살짝 축소 */
+}
+/* 🔒 비구독자가 볼 때 프리미엄 전략 비활성화 */
+.disabled-card {
+    background-color: #f0f0f0; /* 연한 회색 배경 */
+    color: #999; /* 흐린 텍스트 */
+    pointer-events: none; /* 클릭 방지 */
+    opacity: 0.6; /* 반투명 효과 */
+    position: relative;
+}
+
+  /* 🔒 프리미엄 전략 잠금 표시 */
+.premium-lock {
+    color: #ff4d4f;
+    font-weight: bold;
+}
+
+  /* 📌 기본 카드 스타일 */
+.strategy-card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.strategy-card.selected {
+    border: 2px solid #4CAF50; /* 선택된 카드 강조 */
+}
+
+.strategy-card:hover {
+    transform: scale(1.05);
+}
+
 /* ✅ Responsive Adjustments */
 @media (max-width: 768px) {
     .strategy-cards {

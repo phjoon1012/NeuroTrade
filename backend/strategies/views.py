@@ -67,3 +67,50 @@ def confirm_strategy(request):
 
 
 
+@api_view(['POST'])  # ✅ POST 요청만 허용
+@permission_classes([IsAuthenticated])
+def subscribe_confirm(request):
+    """
+    현재 로그인된 유저의 is_subscribed 값을 True로 변경하는 API (구독하기)
+    """
+    user = request.user
+
+    try:
+        user.is_subscribed = True  # ✅ 구독 상태 변경 (구독)
+        user.save()
+
+        return JsonResponse({
+            "message": f"User '{user.username}' has been subscribed!",
+            "is_subscribed": user.is_subscribed
+        }, status=200)
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=400)
+
+@api_view(['POST'])  # ✅ POST 요청만 허용
+@permission_classes([IsAuthenticated])
+def unsubscribe_confirm(request):
+    """
+    현재 로그인된 유저의 is_subscribed 값을 False로 변경하는 API (구독 취소)
+    """
+    user = request.user
+
+    try:
+        if user.bot and user.bot.premium:
+            user.bot = None  # ✅ 프리미엄 전략 제거
+            message = f"User '{user.username}' has been unsubscribed and premium strategy removed!"
+        else:
+            message = f"User '{user.username}' has been unsubscribed!"
+            
+        user.is_subscribed = False  # ✅ 구독 상태 변경 (구독 취소)
+        user.save()
+
+        return JsonResponse({
+            "message": f"User '{user.username}' has been unsubscribed!",
+            "is_subscribed": user.is_subscribed
+        }, status=200)
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=400)
+
+
