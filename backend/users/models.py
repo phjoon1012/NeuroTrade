@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 from cryptography.fernet import Fernet
-
+from strategies.models import Bot
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 
@@ -40,7 +40,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     # API keys for trading
     api_key = models.CharField(max_length=255, blank=True, null=True)
     api_secret = models.CharField(max_length=255, blank=True, null=True)
-    
+
+    # Change this line from OneToOneField to ForeignKey
+    bot = models.ForeignKey(Bot, on_delete=models.SET_NULL, null=True, blank=True, related_name="users")
+
     # Subscription and activity
     is_subscribed = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -54,7 +57,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
-
 
     def __str__(self):
         return self.username
