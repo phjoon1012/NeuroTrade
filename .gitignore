@@ -1,7 +1,7 @@
 
 .env.env
 .env
-
+migrations
 # Ignore virtual environments
 venv/
 .venv
